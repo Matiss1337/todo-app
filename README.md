@@ -1,34 +1,24 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+simple todo app suing next.js, tailwind and Prisma as db
 
-## Getting Started
+To start with prisma, connect to db and create schema, dollow these steps:
 
-First, run the development server:
+https://www.npmjs.com/package/prisma
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+npm i prisma --save-dev
+npx prisma init --datasource-provider sqlite ///starts prisma db
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+in shcema.prisma
+///
+model Todo {
+id String @id @default(uuid())
+title String
+complete Boolean
+createdAt Datetime @default(now())
+updated Datetime @updatedAt
+}
+///
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+npx prisma migrate dev --name init ///creates DB and schema and connects to it
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+in src/ creeate db.ts
+import { PrismaClient } from "@prisma/client";
