@@ -1,4 +1,4 @@
-simple todo app suing next.js, tailwind and Prisma as db
+simple todo app using next.js, tailwind and Prisma as db
 
 To start with prisma, connect to db and create schema, dollow these steps:
 
